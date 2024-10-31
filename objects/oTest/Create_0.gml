@@ -1,18 +1,17 @@
 // Feather disable all
 
-LatSymbolAddSprite(sTest);
-LatSymbolAddFont(sFontASCII, " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~");
+font = font_add_sprite_ext(sFontASCII, " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~", false, 0);
 
 latticeLayer = LatLayerCreate(0);
 
+LatTextSetFont(font);
+
 LatLayerSetTarget(latticeLayer);
-LatPaletteSet(2, c_red);
-LatPaletteSet(3, c_blue);
 
 LatSprite(sTest, 0, 0, 0);
-LatSprite(sTest, 1, 1, 1, 2);
-LatSprite(sTest, 2, 2, 2, 0, 1);
+LatSprite(sTest, 1, 1, 1, c_red);
+LatSprite(sTest, 2, 2, 2, c_black, c_white);
 
-LatText(4, 0, "Hello world!", 2, 1);
-LatBackground(3, 4, 0, 4, 1);
-LatForeground(3, 10, 0, 4, 1);
+LatText(4, 0, "Hello world!", c_black, c_white);
+LatBackground(c_blue, 4, 0, 4, 1);
+LatForeground(c_blue, 10, 0, 4, 1);

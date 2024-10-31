@@ -11,6 +11,19 @@ function __LatClassLayer(_depth, _left, _top, _right, _bottom) constructor
     static _system     = __LatSystem();
     static _layerArray = __LatSystem().__layerArray;
     
+    static _vertexFormat = (function()
+    {
+        vertex_format_begin();
+        vertex_format_add_position_3d();
+        vertex_format_add_color();
+        vertex_format_add_color();
+        vertex_format_add_texcoord();
+        return vertex_format_end();
+    })();
+    
+    static _vertexStride = vertex_format_get_info(_vertexFormat).stride;
+    static _symbolStride = 6*_vertexStride;
+    
     array_push(_layerArray, self);
     
     visible = true;
@@ -26,37 +39,32 @@ function __LatClassLayer(_depth, _left, _top, _right, _bottom) constructor
     
     __gmLayer = layer_create(__depth);
     
-    __gridSymbol    = ds_grid_create(__width, __height);
-    __surfaceSymbol = surface_create(__width, __height);
+    __emptyPosArray = [];
+    __vbPosGrid = ds_grid_create(__width, __height);
+    ds_grid_clear(__vbPosGrid, undefined);
     
-    surface_set_target(__surfaceSymbol)
-    draw_clear(c_black);
-    surface_reset_target();
+    __buffer = buffer_create(0, buffer_grow, 1);
+    __bufferSize = _symbolStride;
+    
+    __vertexBuffer = vertex_create_buffer_from_buffer(__buffer, _vertexFormat);
+    __vertexBufferDirty = false;
+    
+    
     
     layer_script_begin(__gmLayer, function()
     {
-        static _LatShader_u_vLayerSize         = shader_get_uniform(__LatShader, "u_vLayerSize");
-        static _LatShader_u_vCellSize          = shader_get_uniform(__LatShader, "u_vCellSize");
-        static _LatShader_u_vSymbolsSize       = shader_get_uniform(__LatShader, "u_vSymbolsSize");
-        static _LatShader_u_vSymbolsDimensions = shader_get_uniform(__LatShader, "u_vSymbolsDimensions");
-        
-        static _LatShader_u_sSymbols = shader_get_sampler_index(__LatShader, "u_sSymbols");
-        static _LatShader_u_sPalette = shader_get_sampler_index(__LatShader, "u_sPalette");
-        
         if ((event_type == ev_draw) && (event_number = ev_draw_normal))
         {
             if (not visible) return;
             
+            if (__vertexBufferDirty)
+            {
+                __vertexBufferDirty = false;
+                vertex_update_buffer_from_buffer(__vertexBuffer, 0, __buffer);
+            }
+            
             shader_set(__LatShader);
-            shader_set_uniform_f(_LatShader_u_vLayerSize,         __width, __height);
-            shader_set_uniform_f(_LatShader_u_vCellSize,          LATTICE_CELL_WIDTH, LATTICE_CELL_HEIGHT);
-            shader_set_uniform_f(_LatShader_u_vSymbolsSize,       LATTICE_SYMBOLS_WIDTH, LATTICE_SYMBOLS_HEIGHT);
-            shader_set_uniform_f(_LatShader_u_vSymbolsDimensions, LATTICE_SYMBOL_TEXTURE_WIDTH, LATTICE_SYMBOL_TEXTURE_HEIGHT);
-            texture_set_stage(_LatShader_u_sPalette, surface_get_texture(_system.__paletteSurface));
-            texture_set_stage(_LatShader_u_sSymbols, _system.__symbolsTexture);
-            draw_surface_stretched(__surfaceSymbol,
-                                   LATTICE_CELL_WIDTH*__left,  LATTICE_CELL_HEIGHT*__top,
-                                   LATTICE_CELL_WIDTH*__width, LATTICE_CELL_HEIGHT*__height);
+            vertex_submit(__vertexBuffer, pr_trianglelist, sprite_get_texture(sTest, 0));
             shader_reset();
         }
     });
@@ -68,12 +76,44 @@ function __LatClassLayer(_depth, _left, _top, _right, _bottom) constructor
         
         layer_destroy(__gmLayer);
         
-        ds_grid_destroy(__gridSymbol);
-        surface_free(__surfaceSymbol);
+        ds_grid_destroy(__vbIndexGrid);
+        vertex_delete_buffer(__vertexBuffer);
+        buffer_delete(__buffer);
     }
     
     Exists = function()
     {
         return true;
+    }
+    
+    __ReserveSymbol = function(_x, _y)
+    {
+        __vertexBufferDirty = true;
+        
+        var _pos = __vbPosGrid[# _x, _y];
+        if (_pos != undefined)
+        {
+            return _pos;
+        }
+        
+        _pos = array_pop(__emptyPosArray);
+        if (_pos == undefined)
+        {
+            _pos = __bufferSize;
+            __bufferSize += _symbolStride;
+        }
+        
+        __vbPosGrid[# _x, _y] = _pos;
+        
+        return _pos;
+    }
+    
+    __DeleteSymbol = function(_x, _y)
+    {
+        __vertexBufferDirty = true;
+        
+        array_push(__emptyPosArray, _pos);
+        buffer_fill(__buffer, _pos, buffer_u32, 0, _symbolStride);
+        __vbPosGrid[# _x, _y] = undefined;
     }
 }

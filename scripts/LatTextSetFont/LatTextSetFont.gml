@@ -1,14 +1,14 @@
 // Feather disable all
 
-/// @param sprite
+/// @param font
 
-function LatTextSetFont(_fontSprite)
+function LatTextSetFont(_font)
 {
     static _system = __LatSystem();
     
     with(_system)
     {
-        __fontSprite       = _fontSprite;
-        __fontCharacterMap = __fontMap[? _fontSprite];
+        __fontInfo = font_get_info(_font);
+        __font     = _font;
     }
 }

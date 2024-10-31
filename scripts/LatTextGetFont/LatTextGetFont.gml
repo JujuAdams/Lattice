@@ -4,5 +4,5 @@ function LatTextGetFont()
 {
     static _system = __LatSystem();
     
-    return _system.__fontSprite;
+    return _system.__font;
 }
