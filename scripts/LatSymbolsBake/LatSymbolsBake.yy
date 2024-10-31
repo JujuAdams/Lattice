@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"LatSymbolsBake",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"LatSymbolsBake",
+  "parent":{
+    "name":"Symbols",
+    "path":"folders/Lattice/Symbols.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

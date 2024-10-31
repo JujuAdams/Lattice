@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__LatConfig",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__LatConfig",
+  "parent":{
+    "name":"Lattice",
+    "path":"folders/Lattice.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

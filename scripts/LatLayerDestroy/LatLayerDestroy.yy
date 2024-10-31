@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"LatLayerDestroy",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"LatLayerDestroy",
+  "parent":{
+    "name":"Layer",
+    "path":"folders/Lattice/Layer.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"LatSymbolsGetUsed",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"LatSymbolsGetUsed",
+  "parent":{
+    "name":"Symbols",
+    "path":"folders/Lattice/Symbols.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

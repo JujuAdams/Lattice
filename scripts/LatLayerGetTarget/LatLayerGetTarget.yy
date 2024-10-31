@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"LatLayerGetTarget",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"LatLayerGetTarget",
+  "parent":{
+    "name":"Layer",
+    "path":"folders/Lattice/Layer.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"LatPaletteSet",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"LatPaletteSet",
+  "parent":{
+    "name":"Palette",
+    "path":"folders/Lattice/Palette.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

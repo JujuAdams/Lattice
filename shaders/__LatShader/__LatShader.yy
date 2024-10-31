@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"__LatShader",
+  "name":"__LatShader",
+  "parent":{
+    "name":"(System)",
+    "path":"folders/Lattice/(System).yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"LatForeground",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"LatForeground",
+  "parent":{
+    "name":"Drawing",
+    "path":"folders/Lattice/Drawing.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
