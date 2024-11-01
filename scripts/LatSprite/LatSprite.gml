@@ -4,37 +4,48 @@
 /// @param image
 /// @param x
 /// @param y
-/// @param [fgColor=c_white]
-/// @param [bgColor=c_black]
+/// @param [fgColor]
+/// @param [bgColor]
 
-function LatSprite(_sprite, _image, _x, _y, _foreground = c_white, _background = c_black)
+function LatSprite(_sprite, _image, _x, _y, _foreground = undefined, _background = undefined)
 {
     static _system = __LatSystem();
     
     with(_system.__layerTarget)
     {
-        _foreground = 0xFF000000 | _foreground;
-        _background = 0xFF000000 | _background;
+        _x -= floor(sprite_get_xoffset(_sprite) / LATTICE_CELL_WIDTH);
+        _y -= floor(sprite_get_yoffset(_sprite) / LATTICE_CELL_HEIGHT);
         
-        var _spriteUVs = sprite_get_uvs(_sprite, _image);
-        var _u0 = _spriteUVs[0];
-        var _v0 = _spriteUVs[1];
-        var _u1 = _spriteUVs[2];
-        var _v1 = _spriteUVs[3];
-        var _l  = _x*LATTICE_CELL_WIDTH  + _spriteUVs[4];
-        var _t  = _y*LATTICE_CELL_HEIGHT + _spriteUVs[5];
-        var _r  = _l + sprite_get_width( _sprite)*_spriteUVs[6];
-        var _b  = _t + sprite_get_height(_sprite)*_spriteUVs[7];
+        var _cellW = ceil(sprite_get_width(_sprite) / LATTICE_CELL_WIDTH);
+        var _cellH = ceil(sprite_get_height(_sprite) / LATTICE_CELL_HEIGHT);
         
-        var _buffer = __buffer;
-        buffer_seek(_buffer, buffer_seek_start, __ReserveSymbol(_x, _y));
+        var _new = new __LatClassSprite(_sprite, _image, _x, _y);
+        ds_grid_set_region(__spriteRefGrid, _new.__left, _new.__top, _new.__right, _new.__bottom, _new);
         
-        buffer_write(_buffer, buffer_f32, _l); buffer_write(_buffer, buffer_f32, _t); buffer_write(_buffer, buffer_f32, 0); buffer_write(_buffer, buffer_u32, _foreground); buffer_write(_buffer, buffer_u32, _background); buffer_write(_buffer, buffer_f32, _u0); buffer_write(_buffer, buffer_f32, _v0);
-        buffer_write(_buffer, buffer_f32, _r); buffer_write(_buffer, buffer_f32, _t); buffer_write(_buffer, buffer_f32, 0); buffer_write(_buffer, buffer_u32, _foreground); buffer_write(_buffer, buffer_u32, _background); buffer_write(_buffer, buffer_f32, _u1); buffer_write(_buffer, buffer_f32, _v0);
-        buffer_write(_buffer, buffer_f32, _l); buffer_write(_buffer, buffer_f32, _b); buffer_write(_buffer, buffer_f32, 0); buffer_write(_buffer, buffer_u32, _foreground); buffer_write(_buffer, buffer_u32, _background); buffer_write(_buffer, buffer_f32, _u0); buffer_write(_buffer, buffer_f32, _v1);
-                                                                                                                                                                            
-        buffer_write(_buffer, buffer_f32, _r); buffer_write(_buffer, buffer_f32, _t); buffer_write(_buffer, buffer_f32, 0); buffer_write(_buffer, buffer_u32, _foreground); buffer_write(_buffer, buffer_u32, _background); buffer_write(_buffer, buffer_f32, _u1); buffer_write(_buffer, buffer_f32, _v0);
-        buffer_write(_buffer, buffer_f32, _l); buffer_write(_buffer, buffer_f32, _b); buffer_write(_buffer, buffer_f32, 0); buffer_write(_buffer, buffer_u32, _foreground); buffer_write(_buffer, buffer_u32, _background); buffer_write(_buffer, buffer_f32, _u0); buffer_write(_buffer, buffer_f32, _v1);
-        buffer_write(_buffer, buffer_f32, _r); buffer_write(_buffer, buffer_f32, _b); buffer_write(_buffer, buffer_f32, 0); buffer_write(_buffer, buffer_u32, _foreground); buffer_write(_buffer, buffer_u32, _background); buffer_write(_buffer, buffer_f32, _u1); buffer_write(_buffer, buffer_f32, _v1);
+        surface_set_target(__EnsureSpriteSurface());
+        
+        if (not LATTICE_TEXTURE_GROUP_CROPPED)
+        {
+            
+            gpu_set_blendmode(bm_subtract);
+            __LatDrawRectangle(LATTICE_CELL_WIDTH*_x, LATTICE_CELL_HEIGHT*_y, LATTICE_CELL_WIDTH*_cellW, LATTICE_CELL_HEIGHT*_cellH, c_white, 1);
+            gpu_set_blendmode(bm_normal);
+        }
+        
+        gpu_set_blendmode_ext(bm_one, bm_zero);
+        draw_sprite(_sprite, _image, LATTICE_CELL_WIDTH*_x + sprite_get_xoffset(_sprite), LATTICE_CELL_HEIGHT*_y + sprite_get_yoffset(_sprite));
+        gpu_set_blendmode(bm_normal);
+        
+        surface_reset_target();
+        
+        if (_foreground != undefined)
+        {
+            LatForeground(_foreground, _x, _y, _cellW, _cellH);
+        }
+        
+        if (_background != undefined)
+        {
+            LatBackground(_background, _x, _y, _cellW, _cellH);
+        }
     }
 }

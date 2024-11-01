@@ -11,19 +11,6 @@ function __LatClassLayer(_depth, _left, _top, _right, _bottom) constructor
     static _system     = __LatSystem();
     static _layerArray = __LatSystem().__layerArray;
     
-    static _vertexFormat = (function()
-    {
-        vertex_format_begin();
-        vertex_format_add_position_3d();
-        vertex_format_add_color();
-        vertex_format_add_color();
-        vertex_format_add_texcoord();
-        return vertex_format_end();
-    })();
-    
-    static _vertexStride = vertex_format_get_info(_vertexFormat).stride;
-    static _symbolStride = 6*_vertexStride;
-    
     array_push(_layerArray, self);
     
     visible = true;
@@ -39,33 +26,36 @@ function __LatClassLayer(_depth, _left, _top, _right, _bottom) constructor
     
     __gmLayer = layer_create(__depth);
     
-    __emptyPosArray = [];
-    __vbPosGrid = ds_grid_create(__width, __height);
-    ds_grid_clear(__vbPosGrid, undefined);
+    __spriteSurface    = undefined;
+    __foreColorSurface = undefined;
+    __backColorSurface = undefined;
     
-    __buffer = buffer_create(0, buffer_grow, 1);
-    __bufferSize = _symbolStride;
+    __spriteRefGrid = ds_grid_create(__width, __height);
+    __foreColorGrid = ds_grid_create(__width, __height);
+    __backColorGrid = ds_grid_create(__width, __height);
     
-    __vertexBuffer = vertex_create_buffer_from_buffer(__buffer, _vertexFormat);
-    __vertexBufferDirty = false;
+    ds_grid_clear(__spriteRefGrid, undefined);
+    ds_grid_clear(__foreColorGrid, 0xFF000000 | c_white);
+    ds_grid_clear(__backColorGrid, 0xFF000000 | c_black);
     
     
     
     layer_script_begin(__gmLayer, function()
     {
+        static _u_sForeground = shader_get_sampler_index(__LatShader, "u_sForeground");
+        
         if ((event_type == ev_draw) && (event_number = ev_draw_normal))
         {
             if (not visible) return;
             
-            if (__vertexBufferDirty)
-            {
-                __vertexBufferDirty = false;
-                vertex_update_buffer_from_buffer(__vertexBuffer, 0, __buffer);
-            }
+            draw_surface_stretched(__EnsureBackgroundSurface(), LATTICE_CELL_WIDTH*__left, LATTICE_CELL_HEIGHT*__top, LATTICE_CELL_WIDTH*__width, LATTICE_CELL_HEIGHT*__height);
             
             shader_set(__LatShader);
-            vertex_submit(__vertexBuffer, pr_trianglelist, sprite_get_texture(sTest, 0));
+            texture_set_stage(_u_sForeground, surface_get_texture(__EnsureForegroundSurface()));
+            draw_surface_stretched(__EnsureSpriteSurface(), LATTICE_CELL_WIDTH*__left, LATTICE_CELL_HEIGHT*__top, LATTICE_CELL_WIDTH*__width, LATTICE_CELL_HEIGHT*__height);
             shader_reset();
+            
+            //draw_surface_stretched(__EnsureBackgroundSurface(), LATTICE_CELL_WIDTH*__left, LATTICE_CELL_HEIGHT*__top, LATTICE_CELL_WIDTH*__width, LATTICE_CELL_HEIGHT*__height);
         }
     });
     
@@ -73,12 +63,33 @@ function __LatClassLayer(_depth, _left, _top, _right, _bottom) constructor
     {
         Exists = function() { return false; }
         Destroy = function() {}
+        __EnsureSpriteSurface     = function() {}
+        __EnsureForegroundSurface = function() {}
+        __EnsureBackgroundSurface = function() {}
         
         layer_destroy(__gmLayer);
         
-        ds_grid_destroy(__vbIndexGrid);
-        vertex_delete_buffer(__vertexBuffer);
-        buffer_delete(__buffer);
+        if (__spriteSurface = undefined)
+        {
+            surface_free(__spriteSurface);
+            __spriteSurface = undefined;
+        }
+        
+        if (__foreColorSurface = undefined)
+        {
+            surface_free(__foreColorSurface);
+            __foreColorSurface = undefined;
+        }
+        
+        if (__backColorSurface = undefined)
+        {
+            surface_free(__backColorSurface);
+            __backColorSurface = undefined;
+        }
+        
+        ds_grid_destroy(__spriteRefGrid);
+        ds_grid_destroy(__foreColorGrid);
+        ds_grid_destroy(__backColorGrid);
     }
     
     Exists = function()
@@ -86,34 +97,108 @@ function __LatClassLayer(_depth, _left, _top, _right, _bottom) constructor
         return true;
     }
     
-    __ReserveSymbol = function(_x, _y)
+    __EnsureSpriteSurface = function()
     {
-        __vertexBufferDirty = true;
+        if ((__spriteSurface != undefined) && surface_exists(__spriteSurface)) return __spriteSurface;
         
-        var _pos = __vbPosGrid[# _x, _y];
-        if (_pos != undefined)
+        __spriteSurface = surface_create(LATTICE_CELL_WIDTH*__width, LATTICE_CELL_HEIGHT*__height);
+        
+        surface_set_target(__spriteSurface);
+        draw_clear_alpha(c_black, 0);
+        
+        var _cellY = 0;
+        repeat(__height)
         {
-            return _pos;
+            var _cellX = 0;
+            repeat(__width)
+            {
+                var _struct = __spriteRefGrid[# _cellX, _cellY];
+                if (_struct != undefined)
+                {
+                    var _sprite  = _struct.__sprite;
+                    var _image   = _struct.__image;
+                    var _spriteL = _struct.__left;
+                    var _spriteT = _struct.__top;
+                    
+                    draw_sprite_part(_sprite, _image, LATTICE_CELL_WIDTH*(_cellX - _spriteL), LATTICE_CELL_HEIGHT*(_cellY - _spriteT), LATTICE_CELL_WIDTH, LATTICE_CELL_HEIGHT, LATTICE_CELL_WIDTH*_cellX, LATTICE_CELL_HEIGHT*_cellY);
+                }
+                
+                ++_cellX;
+            }
+            
+            ++_cellY;
         }
         
-        _pos = array_pop(__emptyPosArray);
-        if (_pos == undefined)
-        {
-            _pos = __bufferSize;
-            __bufferSize += _symbolStride;
-        }
+        surface_reset_target();
         
-        __vbPosGrid[# _x, _y] = _pos;
-        
-        return _pos;
+        return __spriteSurface;
     }
     
-    __DeleteSymbol = function(_x, _y)
+    __EnsureForegroundSurface = function()
     {
-        __vertexBufferDirty = true;
+        if ((__foreColorSurface != undefined) && surface_exists(__foreColorSurface)) return __foreColorSurface;
         
-        array_push(__emptyPosArray, _pos);
-        buffer_fill(__buffer, _pos, buffer_u32, 0, _symbolStride);
-        __vbPosGrid[# _x, _y] = undefined;
+        __foreColorSurface = surface_create(__width, __height);
+        
+        var _oldAlpha = draw_get_alpha();
+        gpu_set_blendmode_ext(bm_one, bm_zero);
+        
+        surface_set_target(__foreColorSurface);
+        draw_clear(c_black);
+        
+        var _y = 0;
+        repeat(__height)
+        {
+            var _x = 0;
+            repeat(__width)
+            {
+                var _rgba = __foreColorGrid[# _x, _y];
+                __LatDrawPoint(_x, _y, _rgba & 0x00FFFFFF, (_rgba >> 24) / 255);
+                ++_x;
+            }
+            
+            ++_y;
+        }
+        
+        surface_reset_target();
+        
+        gpu_set_blendmode(bm_normal);
+        draw_set_alpha(_oldAlpha);
+        
+        return __foreColorSurface;
+    }
+    
+    __EnsureBackgroundSurface = function()
+    {
+        if ((__backColorSurface != undefined) && surface_exists(__backColorSurface)) return __backColorSurface;
+        
+        __backColorSurface = surface_create(__width, __height);
+        
+        var _oldAlpha = draw_get_alpha();
+        gpu_set_blendmode_ext(bm_one, bm_zero);
+        
+        surface_set_target(__backColorSurface);
+        draw_clear(c_black);
+        
+        var _y = 0;
+        repeat(__height)
+        {
+            var _x = 0;
+            repeat(__width)
+            {
+                var _rgba = __backColorGrid[# _x, _y];
+                __LatDrawPoint(_x, _y, _rgba & 0x00FFFFFF, (_rgba >> 24) / 255);
+                ++_x;
+            }
+            
+            ++_y;
+        }
+        
+        surface_reset_target();
+        
+        gpu_set_blendmode(bm_normal);
+        draw_set_alpha(_oldAlpha);
+        
+        return __backColorSurface;
     }
 }

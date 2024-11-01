@@ -8,7 +8,7 @@ function LatTextSetFont(_font)
     
     with(_system)
     {
-        __fontInfo = font_get_info(_font);
+        __fontInfo = font_get_info(_font); //FIXME - Cache this value
         __font     = _font;
     }
 }

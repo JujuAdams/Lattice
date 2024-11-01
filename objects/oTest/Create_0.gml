@@ -8,9 +8,9 @@ LatTextSetFont(font);
 
 LatLayerSetTarget(latticeLayer);
 
-LatSprite(sTest, 0, 0, 0);
-LatSprite(sTest, 1, 1, 1, c_red);
-LatSprite(sTest, 2, 2, 2, c_black, c_white);
+LatSprite(sTestLarge, 0, 0, 0);
+LatSprite(sTestSmall, 1, 1, 1, c_red);
+LatSprite(sTestSmall, 2, 2, 2, c_black, c_white);
 
 LatText(4, 0, "Hello world!", c_black, c_white);
 LatBackground(c_blue, 4, 0, 4, 1);

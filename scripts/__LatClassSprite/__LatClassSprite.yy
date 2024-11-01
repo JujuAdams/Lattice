@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__LatClassSprite",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__LatClassSprite",
+  "parent":{
+    "name":"(System)",
+    "path":"folders/Lattice/(System).yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
