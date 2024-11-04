@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"LatBoxDefinePattern",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"LatBoxDefinePattern",
+  "parent":{
+    "name":"Box",
+    "path":"folders/Lattice/Draw/Box.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

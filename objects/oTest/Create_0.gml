@@ -1,10 +1,10 @@
 // Feather disable all
 
 font = font_add_sprite_ext(sFontASCII, " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~", false, 0);
+LatTextSetFont(font);
 
 latticeLayer = LatLayerCreate(0);
 
-LatTextSetFont(font);
 
 LatLayerSetTarget(latticeLayer);
 

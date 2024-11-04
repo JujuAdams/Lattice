@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"LatForeground",
   "parent":{
-    "name":"Drawing",
-    "path":"folders/Lattice/Drawing.yy",
+    "name":"Stamp",
+    "path":"folders/Lattice/Stamp.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

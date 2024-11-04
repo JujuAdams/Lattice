@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"LatTextSetFont",
   "parent":{
-    "name":"Drawing",
-    "path":"folders/Lattice/Drawing.yy",
+    "name":"Lattice",
+    "path":"folders/Lattice.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

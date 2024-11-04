@@ -13,6 +13,8 @@ function __LatSystem()
         
         __layerArray  = [];
         __layerTarget = undefined;
+        
+        __boxDict = {};
     }
     
     return _system;

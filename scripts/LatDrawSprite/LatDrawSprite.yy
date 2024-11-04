@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"LatDrawSprite",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"LatDrawSprite",
+  "parent":{
+    "name":"Draw",
+    "path":"folders/Lattice/Draw.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"LatDrawRectEdge",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"LatDrawRectEdge",
+  "parent":{
+    "name":"Rectangles",
+    "path":"folders/Lattice/Draw/Rectangles.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

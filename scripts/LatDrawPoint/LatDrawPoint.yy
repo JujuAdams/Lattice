@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"LatDrawPoint",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"LatDrawPoint",
+  "parent":{
+    "name":"Draw",
+    "path":"folders/Lattice/Draw.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

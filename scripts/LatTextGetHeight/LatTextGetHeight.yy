@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"LatTextGetHeight",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"LatTextGetHeight",
+  "parent":{
+    "name":"Draw",
+    "path":"folders/Lattice/Draw.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

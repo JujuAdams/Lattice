@@ -6,7 +6,7 @@
 /// @param [fgColor]
 /// @param [bgColor]
 
-function LatText(_x, _y, _text, _foreground = undefined, _background = undefined)
+function LatText(_x, _y, _text, _fgColor = undefined, _bgColor = undefined)
 {
     static _system = __LatSystem();
     
@@ -53,14 +53,14 @@ function LatText(_x, _y, _text, _foreground = undefined, _background = undefined
         
         surface_reset_target();
         
-        if (_foreground != undefined)
+        if (_fgColor != undefined)
         {
-            LatForeground(_foreground, _x, _y, _cellW*string_length(_text), _cellH);
+            LatForeground(_fgColor, _x, _y, _cellW*string_length(_text), _cellH);
         }
         
-        if (_background != undefined)
+        if (_bgColor != undefined)
         {
-            LatBackground(_background, _x, _y, _cellW*string_length(_text), _cellH);
+            LatBackground(_bgColor, _x, _y, _cellW*string_length(_text), _cellH);
         }
     }
 }

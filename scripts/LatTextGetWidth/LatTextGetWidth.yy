@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"LatTextGetWidth",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"LatTextGetWidth",
+  "parent":{
+    "name":"Draw",
+    "path":"folders/Lattice/Draw.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

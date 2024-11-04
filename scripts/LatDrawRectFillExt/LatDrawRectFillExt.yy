@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"LatDrawRectFillExt",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"LatDrawRectFillExt",
+  "parent":{
+    "name":"Rectangles",
+    "path":"folders/Lattice/Draw/Rectangles.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
