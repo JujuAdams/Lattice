@@ -8,6 +8,8 @@
 
 function LatDrawRect(_left, _top, _right, _bottom, _color)
 {
+    if (_right < _left) return;
+    
     draw_sprite_stretched_ext(__LatPixel, 0,
                               LATTICE_CELL_WIDTH*_left, LATTICE_CELL_HEIGHT*_top,
                               LATTICE_CELL_WIDTH*(1 + _right - _left), LATTICE_CELL_HEIGHT*(1 + _bottom - _top),

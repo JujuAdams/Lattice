@@ -22,4 +22,7 @@ GuiInputPointer(device_mouse_x(0) div LATTICE_CELL_WIDTH,
 
 GuiInputDirectional(_dX, _dY, keyboard_check(vk_space));
 
+GuiInputButton(GUI_BUTTON_MOUSE_WHEEL_UP, mouse_wheel_up());
+GuiInputButton(GUI_BUTTON_MOUSE_WHEEL_DOWN, mouse_wheel_down());
+
 GuiStep();

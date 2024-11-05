@@ -12,12 +12,24 @@ GuiNavSetMode(GUI_NAV_MOUSE);
 
 var _layout = GuiLayoutStartListV(GUI_ROOT, 0, fa_left, fa_top);
 
-GuiCreateInLayout(_layout, GuiExampleButton, {
-    text: "Test Button 1",
+GuiCreateInLayout(_layout, GuiExampleSmallButton, {
+    text: "Small Button!",
 });
 
-GuiCreateInLayout(_layout, GuiExampleButton, {
-    text: "Test Button 2",
+GuiCreateInLayout(_layout, GuiExampleBigButton, {
+    text: "Big Button!",
+});
+
+GuiCreateInLayout(_layout, GuiExampleSmallButton, {
+    text: "Small button\nwith text\nover many\nlines",
+});
+
+GuiCreateInLayout(_layout, GuiExampleBigButton, {
+    text: "Big button\nwith newlines",
+});
+
+GuiCreateInLayout(_layout, GuiExampleSmallButton, {
+    text: "Open Modal",
     func: function()
     {
         var _modal = GuiCreate(GuiExampleFrame, undefined, GUI_ROOT, 40, 15);
@@ -35,7 +47,7 @@ GuiCreateInLayout(_layout, GuiExampleButton, {
             height: 1,
         });
         
-        GuiCreateInLayout(_layout, GuiExampleButton, {
+        GuiCreateInLayout(_layout, GuiExampleBigButton, {
             text: "Cancel",
             func: function()
             {
@@ -43,7 +55,7 @@ GuiCreateInLayout(_layout, GuiExampleButton, {
             },
         });
         
-        GuiCreateInLayout(_layout, GuiExampleButton, {
+        GuiCreateInLayout(_layout, GuiExampleBigButton, {
             text: "Accept",
             func: function()
             {
@@ -57,11 +69,62 @@ GuiCreateInLayout(_layout, GuiExampleButton, {
     },
 });
 
-repeat(8)
+var _i = 0;
+repeat(4)
 {
-    GuiCreateInLayout(_layout, GuiExampleButton, {
-        text: "Another Button",
+    GuiCreateInLayout(_layout, GuiExampleRadioButton, {
+        group: "test",
+        index: _i,
+        text: $"Radio Button {_i}",
+        func: function(_old, _new)
+        {
+            show_debug_message($"Radio button option changed from {_old} to {_new}");
+        }
     });
+    
+    ++_i;
 }
 
+GuiCreateInLayout(_layout, GuiExampleSliderH, {
+    width: 12,
+    height: 1,
+});
+
+GuiCreateInLayout(_layout, GuiExampleScrollBarH, {
+    width: 22,
+    height: 1,
+});
+
+GuiCreateInLayout(_layout, GuiExampleCheckbox, {
+    text: "Checkbox test",
+});
+
 GuiLayoutFinish(_layout, 0, 0);
+
+GuiCreate(GuiExampleFillBarH, {
+    x: 25,
+    y:  0,
+    width:  10,
+    height:  1,
+}, GUI_ROOT);
+
+GuiCreate(GuiExampleFillBarV, {
+    x: 36,
+    y:  0,
+    width:   1,
+    height: 10,
+}, GUI_ROOT);
+
+GuiCreate(GuiExampleSliderV, {
+    x: 40,
+    y:  0,
+    width:   2,
+    height: 10,
+}, GUI_ROOT);
+
+GuiCreate(GuiExampleScrollBarV, {
+    x: 45,
+    y:  0,
+    width:   1,
+    height: 10,
+}, GUI_ROOT);

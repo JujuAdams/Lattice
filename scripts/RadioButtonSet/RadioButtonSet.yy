@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"RadioButtonSet",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"RadioButtonSet",
+  "parent":{
+    "name":"Lattice",
+    "path":"Lattice.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
