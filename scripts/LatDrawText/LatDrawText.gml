@@ -26,5 +26,5 @@ function LatDrawText(_x, _y, _text, _fgColor, _bgColor = undefined)
     draw_text(LATTICE_CELL_WIDTH*_x, LATTICE_CELL_HEIGHT*_y, _text);
     
     draw_set_font(_oldFont);
-    draw_set_font(_oldColor);
+    draw_set_color(_oldColor);
 }

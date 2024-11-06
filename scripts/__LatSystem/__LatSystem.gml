@@ -1,5 +1,11 @@
 // Feather disable all
 
+#macro __LATTICE_COMMAND_TEXT      0
+#macro __LATTICE_COMMAND_SPRITE    1
+#macro __LATTICE_COMMAND_FONT      2
+#macro __LATTICE_COMMAND_FG_COLOR  3
+#macro __LATTICE_COMMAND_BG_COLOR  4
+
 __LatSystem();
 function __LatSystem()
 {
@@ -15,6 +21,8 @@ function __LatSystem()
         __layerTarget = undefined;
         
         __boxDict = {};
+        
+        __formatCacheDict = {};
     }
     
     return _system;

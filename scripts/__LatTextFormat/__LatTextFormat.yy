@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__LatTextFormat",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__LatTextFormat",
+  "parent":{
+    "name":"(System)",
+    "path":"folders/Lattice/(System).yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

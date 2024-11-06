@@ -20,6 +20,11 @@ GuiCreateInLayout(_layout, GuiExampleBigButton, {
     text: "Big Button!",
 });
 
+GuiCreateInLayout(_layout, GuiExampleTextFormatted, {
+    text: "'twas [fg,#ffc0c0]brillig[/c] and the [fg,#c0ffc0]slithey toves[/c] didst gyre and gimble in the wabe",
+    maxWidth: 20,
+});
+
 GuiCreateInLayout(_layout, GuiExampleSmallButton, {
     text: "Small button\nwith text\nover many\nlines",
 });
