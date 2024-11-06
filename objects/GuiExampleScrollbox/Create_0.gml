@@ -5,7 +5,7 @@
 
 event_inherited();
 
-if (not variable_instance_exists(id, "padding")) padding = 1;
+if (not variable_instance_exists(id, "padding")) padding = 0;
 if (not variable_instance_exists(id, "showScrollbar")) showScrollbar = true;
 
 if ((width == 0) || (width == 0))

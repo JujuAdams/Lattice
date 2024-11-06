@@ -8,4 +8,4 @@ LatTextSetFont(font);
 
 LatBoxDefinePattern("test", sFontFull, 0, 201, 205, 187, 186, 188, 205, 200, 186);
 
-instance_create_depth(0, 0, 0, oGuiScrollbox);
+instance_create_depth(0, 0, 0, oGuiTest);

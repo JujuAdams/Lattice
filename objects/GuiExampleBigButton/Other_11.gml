@@ -7,13 +7,21 @@
 
 event_inherited();
 
-var _left   = x;
-var _top    = y;
-var _right  = x + width-1;
-var _bottom = y + height-1;
+if (GuiNavGetHold())
+{
+    var _fgColor = C_MONSTER;
+    var _bgColor = C_MALIBU;
+}
+else if (GuiNavGetOver())
+{
+    var _fgColor = C_MALIBU;
+    var _bgColor = C_VENICE;
+}
+else
+{
+    var _fgColor = C_MALIBU;
+    var _bgColor = C_MONSTER;
+}
 
-var _fgColor = GuiNavGetOver()? c_white : c_ltgray;
-var _bgColor = (GuiNavGetHold() && GuiNavUsingPointer())? c_gray : c_dkgray;
-
-LatDrawBox("test", _left, _top, _right, _bottom, _fgColor, _bgColor, _fgColor, _bgColor);
-LatDrawText(_left + (width - LatTextGetWidth(text)) div 2, _top + (height - LatTextGetHeight(text)) div 2, text, _fgColor, _bgColor);
+LatDrawBox("test", x, y, x + width-1, y + height-1, _fgColor, _bgColor, _fgColor, _bgColor);
+LatDrawText(x + (width - LatTextGetWidth(text)) div 2, y + (height - LatTextGetHeight(text)) div 2, text, _fgColor, _bgColor);

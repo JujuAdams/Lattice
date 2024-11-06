@@ -27,7 +27,7 @@ if (not variable_instance_exists(id, "func")) func = function(){};
 // Gui instances will initialize to have a `width` and `height` of 0. If either is zero when this
 // event is executed then we set a reasonable default value by using the size of the text label
 // that will be drawn on the button.
-if (width  == 0) width  = 2 + LatTextGetWidth(text);
+if (width  == 0) width  = 4 + LatTextGetWidth(text);
 if (height == 0) height = LatTextGetHeight(text);
 
 // Ensure that the method set as the callback is guaranteed to be scoped to this instance. This

@@ -13,8 +13,21 @@ var _right   = x + width-1;
 var _bottom  = y + height-1;
 var _xCenter = _left + width div 2;
 
-var _fgColor = GuiNavGetOver()? c_white : c_ltgray;
-var _bgColor = (GuiNavGetHold() && GuiNavUsingPointer())? c_gray : c_dkgray;
+if (GuiNavGetHold())
+{
+    var _fgColor = C_MONSTER;
+    var _bgColor = C_MALIBU;
+}
+else if (GuiNavGetOver())
+{
+    var _fgColor = C_MALIBU;
+    var _bgColor = C_VENICE;
+}
+else
+{
+    var _fgColor = C_MALIBU;
+    var _bgColor = C_MONSTER;
+}
 
 if (arrows)
 {
@@ -34,5 +47,5 @@ else
 
 var _handlePos = round(lerp(_bodyB, _bodyT-1, clamp((value - valueMin) / (valueMax - valueMin), 0, 1)));
 
-LatDrawRect(_left, _handlePos+1, _right, _bodyB, _fgColor);
-LatDrawRectExt(_left, _bodyT, _right, _handlePos, sFontFull, 177, _fgColor, c_gray);
+LatDrawRect(_left, _handlePos+1, _right, _bodyB, C_MALIBU);
+LatDrawRectExt(_left, _bodyT, _right, _handlePos, sFontFull, 177, _fgColor, _bgColor);

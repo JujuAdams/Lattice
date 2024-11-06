@@ -1,127 +1,177 @@
 // Feather disable all
 
-GuiNavSetMode(GUI_NAV_MOUSE);
+var _yellow    = #FFFF66;
+var _gold      = #FFCF0F;
+var _lightBlue = #66CCFF;
+var _midBlue   = #336699;
+var _darkBlue  = #264C72;
+var _grey      = #80C4DE;
 
-var _layout = GuiLayoutStartListV(GUI_ROOT, 0, fa_left, fa_top);
+background = GuiCreate(GuiExampleRect, {
+    x: 0,
+    y: 0,
+    width:  80,
+    height: 30,
+    color:  C_MONSTER,
+}, GUI_ROOT);
 
-GuiCreateInLayout(_layout, GuiExampleSmallButton, {
-    text: "Small Button!",
-});
-
-GuiCreateInLayout(_layout, GuiExampleBigButton, {
-    text: "Big Button!",
-});
-
-GuiCreateInLayout(_layout, GuiExampleTextFormatted, {
-    text: "'twas [fg,#ffc0c0]brillig[/c] and the [fg,#c0ffc0]slithey toves[/c] didst gyre and gimble in the wabe",
-    maxWidth: 20,
-});
-
-GuiCreateInLayout(_layout, GuiExampleSmallButton, {
-    text: "Small button\nwith text\nover many\nlines",
-});
-
-GuiCreateInLayout(_layout, GuiExampleBigButton, {
-    text: "Big button\nwith newlines",
-});
-
-GuiCreateInLayout(_layout, GuiExampleSmallButton, {
-    text: "Open Modal",
-    func: function()
+with(background)
+{
+    GuiCreate(GuiExampleText, {
+        x: 1,
+        y: 1,
+        text: "BUTTONS",
+        fgColor: C_SUPERSTAR,
+    });
+    
+    GuiCreate(GuiExampleSmallButton, {
+        x: 1,
+        y: 3,
+        text: "Click",
+    });
+    
+    GuiCreate(GuiExampleBigButton, {
+        x: 1,
+        y: 5,
+        text: "Click",
+    });
+    
+    GuiCreate(GuiExampleText, {
+        x: 16,
+        y: 1,
+        text: "BARS",
+        fgColor: C_SUPERSTAR,
+    });
+    
+    GuiCreate(GuiExampleFillBarH, {
+        x: 16,
+        y: 3,
+        width: 12,
+    });
+    
+    GuiCreate(GuiExampleSliderH, {
+        x: 16,
+        y: 5,
+        width: 12,
+    });
+    
+    GuiCreate(GuiExampleScrollBarH, {
+        x: 16,
+        y: 7,
+        width: 12,
+    });
+    
+    GuiCreate(GuiExampleFillBarV, {
+        x: 16,
+        y: 9,
+        height: 7,
+    });
+    
+    GuiCreate(GuiExampleSliderV, {
+        x: 18,
+        y: 9,
+        height: 7,
+    });
+    
+    GuiCreate(GuiExampleScrollBarV, {
+        x: 20,
+        y: 9,
+        height: 7,
+    });
+    
+    GuiCreate(GuiExampleText, {
+        x: 32,
+        y: 1,
+        text: "SCROLLBOX",
+        fgColor: C_SUPERSTAR,
+    });
+    
+    scrollbox = GuiCreate(GuiExampleScrollbox, {
+        x: 32,
+        y: 3,
+        width: 20,
+        height: 6,
+    });
+    
+    var _layout = GuiLayoutStartListV(scrollbox, 0, fa_left, fa_top);
+    
+    var _i = 1;
+    repeat(9)
     {
-        var _modal = GuiCreate(GuiExampleFrame, undefined, GUI_ROOT, 40, 15);
-        GuiSetBehavior(GUI_BEHAVIOR_MODAL, _modal);
-        GuiNavSelectOnDestroy(_modal, id);
-        
-        var _layout = GuiLayoutStartListV(_modal, 0, fa_center, fa_middle);
-        
-        GuiCreateInLayout(_layout, GuiExampleText, {
-            text: "Here is a test of a modal.",
+        GuiCreateInLayout(_layout, GuiExampleSmallButton, {
+            text: $"item {_i}",
         });
-        
-        GuiCreateInLayout(_layout, GuiExampleSpacer, {
-            width: 1,
-            height: 1,
-        });
-        
-        GuiCreateInLayout(_layout, GuiExampleBigButton, {
-            text: "Cancel",
-            func: function()
-            {
-                GuiDestroy(GuiGetParent());
-            },
-        });
-        
-        GuiCreateInLayout(_layout, GuiExampleBigButton, {
-            text: "Accept",
-            func: function()
-            {
-                GuiDestroy(GuiGetParent());
-            },
-        });
-        
-        GuiLayoutFinish(_layout, _modal.x, _modal.y);
-        GuiLayoutNavSelectFirst(_layout);
-        GuiSetSizeAroundChildrenExt(4, 2, 4, 2, _modal);
-    },
-});
+    
+        ++_i;
+    }
+    
+    GuiLayoutFinishWithScroll(_layout);
+    
+    GuiCreate(GuiExampleText, {
+        x: 32,
+        y: 10,
+        text: "RADIO BUTTON",
+        fgColor: C_SUPERSTAR,
+    });
+    
+    GuiCreate(GuiExampleRadioButton, {
+        text:  "Group 1 Option 1",
+        group: "Group 1",
+        index: 1,
+        x: 32,
+        y: 12,
+    });
+    
+    GuiCreate(GuiExampleRadioButton, {
+        text:  "Group 1 Option 2",
+        group: "Group 1",
+        index: 2,
+        x: 32,
+        y: 13,
+    });
+    
+    GuiCreate(GuiExampleText, {
+        x: 56,
+        y: 1,
+        text: "CHECKBOX",
+        fgColor: C_SUPERSTAR,
+    });
+    
+    GuiCreate(GuiExampleCheckbox, {
+        x: 56,
+        y: 3,
+        text: "Check box 1",
+    });
+    
+    GuiCreate(GuiExampleCheckbox, {
+        x: 56,
+        y: 4,
+        text: "Check box 2",
+    });
+}
+
+ 
+
+return;
+
+scrollbox = GuiCreate(GuiExampleScrollbox, {
+    x:       2,
+    y:       2,
+    width:  22,
+    height: 12,
+},
+GUI_ROOT);
+
+var _layout = GuiLayoutStartListV(scrollbox, 0, fa_left, fa_top);
 
 var _i = 0;
-repeat(4)
+repeat(20)
 {
-    GuiCreateInLayout(_layout, GuiExampleRadioButton, {
-        group: "test",
-        index: _i,
-        text: $"Radio Button {_i}",
-        func: function(_old, _new)
-        {
-            show_debug_message($"Radio button option changed from {_old} to {_new}");
-        }
+    GuiCreateInLayout(_layout, GuiExampleSmallButton, {
+        text: $"Example {_i}",
     });
     
     ++_i;
 }
 
-GuiCreateInLayout(_layout, GuiExampleSliderH, {
-    width: 12,
-    height: 1,
-});
-
-GuiCreateInLayout(_layout, GuiExampleScrollBarH, {
-    width: 22,
-    height: 1,
-});
-
-GuiCreateInLayout(_layout, GuiExampleCheckbox, {
-    text: "Checkbox test",
-});
-
-GuiLayoutFinish(_layout, 0, 0);
-
-GuiCreate(GuiExampleFillBarH, {
-    x: 25,
-    y:  0,
-    width:  10,
-    height:  1,
-}, GUI_ROOT);
-
-GuiCreate(GuiExampleFillBarV, {
-    x: 36,
-    y:  0,
-    width:   1,
-    height: 10,
-}, GUI_ROOT);
-
-GuiCreate(GuiExampleSliderV, {
-    x: 40,
-    y:  0,
-    width:   2,
-    height: 10,
-}, GUI_ROOT);
-
-GuiCreate(GuiExampleScrollBarV, {
-    x: 45,
-    y:  0,
-    width:   1,
-    height: 10,
-}, GUI_ROOT);
+GuiLayoutFinishWithScroll(_layout);

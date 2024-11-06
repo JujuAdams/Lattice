@@ -12,9 +12,33 @@ var _top    = y;
 var _right  = x + width-1;
 var _bottom = y + height-1;
 
-var _fgColor = GuiNavGetOver()? c_white : c_ltgray;
-var _bgColor = (GuiNavGetHold() && GuiNavUsingPointer())? c_gray : c_dkgray;
+if (GuiNavGetHold())
+{
+    var _fgColor    = C_MONSTER;
+    var _bgColor    = C_MALIBU;
+    var _arrowColor = C_MONSTER;
+}
+else if (GuiNavGetOver())
+{
+    var _fgColor    = C_MALIBU;
+    var _bgColor    = C_VENICE;
+    var _arrowColor = C_MALIBU;
+}
+else
+{
+    var _fgColor    = C_MALIBU;
+    var _bgColor    = C_MONSTER;
+    var _arrowColor = C_YABBA;
+}
 
-LatDrawRect(_left, _top, _right, _bottom, _bgColor);
-LatDrawSprite(sFontFull, value? 2 : 1, _left, _top, _fgColor, undefined);
-LatDrawText(_left + 2, _top, text, _fgColor, undefined);
+LatDrawRect(x, y, _right, _bottom, _bgColor);
+
+if (value)
+{
+    LatDrawSprite(sFontFull, 251, x+1, y, C_LEMON);
+}
+
+LatDrawSprite(sFontFull, 91, x,   y, _arrowColor);
+LatDrawSprite(sFontFull, 93, x+2, y, _arrowColor);
+
+LatDrawText(x + 4, y, text, _fgColor, undefined);
