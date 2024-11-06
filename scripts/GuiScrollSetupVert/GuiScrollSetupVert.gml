@@ -16,7 +16,7 @@ function GuiScrollSetupVert(_paddingTop = 0, _paddingBottom = 0, _instance = id)
             __GuiError("Scissor region not set up");
         }
         
-        var _visibleHeight = __scissorBottom - __scissorTop;
+        var _visibleHeight = 1 + __scissorBottom - __scissorTop;
         
         var _bounds = GuiGetChildrenBounds();
         var _childrenHeight = _bounds.height;

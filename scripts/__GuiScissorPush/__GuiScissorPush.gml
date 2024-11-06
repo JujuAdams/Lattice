@@ -26,9 +26,9 @@ function __GuiScissorPush(_newL, _newT, _newR, _newB)
     array_push(_scissorStack, {
         x: _l,
         y: _t,
-        w: _r - _l,
-        h: _b - _t,
+        w: 1 + _r - _l,
+        h: 1 + _b - _t,
     });
     
-    __GuiScissorSet(_l, _t, _r - _l, _b - _t);
+    __GuiScissorSet(_l, _t, 1 + _r - _l, 1 + _b - _t);
 }

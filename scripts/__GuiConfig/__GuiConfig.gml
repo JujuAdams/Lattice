@@ -8,16 +8,9 @@
 // `GUI_CREATE_LAYER` is set to `undefined`.
 #macro GUI_CREATE_DEPTH  0
 
-// How far the pointer must move before engaging scrolling when clicking and dragging.
-#macro GUI_SCROLL_THRESHOLD  4
-
 // Whether the primary action should trigger a click on press rather than on release when using a
 // pointer.
 #macro GUI_POINTER_CLICK_ON_PRESS  false
-
-// How far to scroll when scrolling with a mouse wheel. Set this value to `0` to disable mouse
-// wheel scrolling (or just don't use `GUI_BUTTON_MOUSE_WHEEL_UP` or `GUI_BUTTON_MOUSE_WHEEL_DOWN`).
-#macro GUI_MOUSE_WHEEL_SCROLL_SPEED  20
 
 // Whether pop-ups will allow you to click instances behind the pop-up. If this macro is set to
 // `true` then instances can be highlighted and clicked. Setting this macro to `false` will prevent

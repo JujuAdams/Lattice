@@ -22,8 +22,8 @@ function GuiScrollTo(_instance)
         }
         else
         {
-            var _instL = _instance.x - _instance.scrollMarginLeft;
-            var _instR = _instance.x + width-1 + _instance.scrollMarginRight;
+            var _instL = _instance.x;
+            var _instR = _instance.x + _instance.width-1;
             var _parL  = __scissorState? __scissorLeft : x;
             var _parR  = __scissorState? __scissorRight : (x + width-1);
             var _distL = _parL - _instL;
@@ -52,8 +52,8 @@ function GuiScrollTo(_instance)
         }
         else
         {
-            var _instT = _instance.y - _instance.scrollMarginTop;
-            var _instB = _instance.y + height-1 + _instance.scrollMarginBottom;
+            var _instT = _instance.y;
+            var _instB = _instance.y + _instance.height-1;
             var _parT  = __scissorState? __scissorTop : y;
             var _parB  = __scissorState? __scissorBottom : (y + height-1);
             var _distT = _parT - _instT;

@@ -16,7 +16,7 @@ function GuiScrollSetupHori(_paddingLeft = 0, _paddingRight = 0, _instance = id)
             __GuiError("Scissor region not set up");
         }
         
-        var _visibleWidth = __scissorRight - __scissorLeft;
+        var _visibleWidth = 1 + __scissorRight - __scissorLeft;
         
         var _bounds = GuiGetChildrenBounds();
         var _childrenWidth = _bounds.width;

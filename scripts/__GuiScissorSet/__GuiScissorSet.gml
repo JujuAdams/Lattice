@@ -15,10 +15,10 @@ function __GuiScissorSet(_left, _top, _width, _height)
         var _xScale = window_get_width() / display_get_gui_width();
         var _yScale = window_get_height() / display_get_gui_height();
         
-        _left   *= _xScale;
-        _top    *= _yScale;
-        _width  *= _xScale;
-        _height *= _yScale;
+        _left   *= _xScale*LATTICE_CELL_WIDTH;
+        _top    *= _yScale*LATTICE_CELL_HEIGHT;
+        _width  *= _xScale*LATTICE_CELL_WIDTH;
+        _height *= _yScale*LATTICE_CELL_HEIGHT;
     }
     else if (_surface == application_surface)
     {
@@ -30,10 +30,10 @@ function __GuiScissorSet(_left, _top, _width, _height)
                 var _xScale = surface_get_width(application_surface) / camera_get_view_width(_camera);
                 var _yScale = surface_get_height(application_surface) / camera_get_view_height(_camera);
                 
-                _left   *= _xScale;
-                _top    *= _yScale;
-                _width  *= _xScale;
-                _height *= _yScale;
+                _left   *= _xScale*LATTICE_CELL_WIDTH;
+                _top    *= _yScale*LATTICE_CELL_HEIGHT;
+                _width  *= _xScale*LATTICE_CELL_WIDTH;
+                _height *= _yScale*LATTICE_CELL_HEIGHT;
             }
         }
     }
