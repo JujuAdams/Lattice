@@ -33,12 +33,12 @@ if (arrows && GuiNavUsingPointer() && (not handleGrabbed))
     {
         if (GuiButtonGetPress(GUI_BUTTON_MOUSE_WHEEL_UP))
         {
-            value = min(value + _unit, valueMax);
+            value = min(value - _unit, valueMax);
         }
         
         if (GuiButtonGetPress(GUI_BUTTON_MOUSE_WHEEL_DOWN))
         {
-            value = max(value - _unit, valueMin);
+            value = max(value + _unit, valueMin);
         }
     }
 }

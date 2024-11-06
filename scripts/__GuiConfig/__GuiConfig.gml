@@ -12,6 +12,9 @@
 // pointer.
 #macro GUI_POINTER_CLICK_ON_PRESS  false
 
+// Whether clicking and dragging on a scrollable UI element should scroll.
+#macro GUI_SCROLL_ON_DRAG  false
+
 // Whether pop-ups will allow you to click instances behind the pop-up. If this macro is set to
 // `true` then instances can be highlighted and clicked. Setting this macro to `false` will prevent
 // background instances from being clicked but the pop-up will still be destroyed.

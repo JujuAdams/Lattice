@@ -21,9 +21,9 @@ if (arrows)
     var _bodyT = _top+1;
     var _bodyB = _bottom-1;
     
-    LatDrawRect(_left, _top, _left, _bottom, _bgColor);
+    LatDrawRect(_left, _top, _right, _top, _bgColor);
     LatDrawSprite(sFontFull, 24, _xCenter, _top, _fgColor, _bgColor);
-    LatDrawRect(_right, _bottom, _right, _bottom, _bgColor);
+    LatDrawRect(_left, _bottom, _right, _bottom, _bgColor);
     LatDrawSprite(sFontFull, 25, _xCenter, _bottom, _fgColor, _bgColor);
 }
 else

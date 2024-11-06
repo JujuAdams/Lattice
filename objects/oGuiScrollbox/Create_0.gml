@@ -1,6 +1,6 @@
 // Feather disable all
 
-scrollbox = GuiCreate(GuiExampleFrame, {
+scrollbox = GuiCreate(GuiExampleScrollbox, {
     x:       2,
     y:       2,
     width:  22,
@@ -20,5 +20,4 @@ repeat(20)
     ++_i;
 }
 
-GuiScrollSetRegion(1, scrollbox);
 GuiLayoutFinishWithScroll(_layout);

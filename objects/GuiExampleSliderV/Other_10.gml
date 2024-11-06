@@ -1,5 +1,7 @@
 /// @desc Step
 
+event_inherited();
+
 var _oldValue = value;
 
 if (arrows)
