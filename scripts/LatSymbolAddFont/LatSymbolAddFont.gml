@@ -14,7 +14,7 @@ function LatSymbolAddFont(_sprite, _mapString)
         var _characterMap = __fontMap[? _sprite];
         if (_characterMap != undefined)
         {
-            LatSymbolDeleteFont(_sprite);
+            return;
         }
         
         if (sprite_get_width(_sprite) > LATTICE_CELL_WIDTH)
@@ -28,7 +28,11 @@ function LatSymbolAddFont(_sprite, _mapString)
         }
         
         _characterMap = ds_map_create();
-        __fontMap[? _sprite] = _characterMap;
+        __fontMap[? _sprite] = {
+            __sprite:       _sprite,
+            __mapString:    _mapString,
+            __characterMap: _characterMap,
+        };
         
         var _xOffset = sprite_get_xoffset(_sprite);
         var _yOffset = sprite_get_yoffset(_sprite);

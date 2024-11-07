@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"LatPaletteSet",
+  "%Name":"LatSymbolAddTag",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"LatPaletteSet",
+  "name":"LatSymbolAddTag",
   "parent":{
-    "name":"Palette",
-    "path":"folders/Lattice/Palette.yy",
+    "name":"Lattice",
+    "path":"Lattice.yyp",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

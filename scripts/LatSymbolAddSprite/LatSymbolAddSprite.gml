@@ -13,7 +13,7 @@ function LatSymbolAddSprite(_sprite)
         var _imageArray = __spriteMap[? _sprite];
         if (_imageArray != undefined)
         {
-            LatSymbolDeleteSprite(_sprite);
+            return;
         }
         
         if (sprite_get_width(_sprite) > LATTICE_CELL_WIDTH)
@@ -27,7 +27,10 @@ function LatSymbolAddSprite(_sprite)
         }
         
         _imageArray = array_create(sprite_get_number(_sprite));
-        __spriteMap[? _sprite] = _imageArray;
+        __spriteMap[? _sprite] = {
+            __sprite:     _sprite,
+            __imageArray: _imageArray,
+        };
         
         var _xOffset = sprite_get_xoffset(_sprite);
         var _yOffset = sprite_get_yoffset(_sprite);

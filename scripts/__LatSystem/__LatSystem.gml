@@ -31,15 +31,6 @@ function __LatSystem()
         __symbolsUsed    = 0;
         __symbolsDirty   = false;
         __symbolsSurface = undefined;
-        __symbolsSprite  = undefined;
-        __symbolsTexture = -1;
-        
-        __paletteArray = array_create(256, c_white);
-        __paletteSurface = surface_create(256, 1);
-        surface_set_target(__paletteSurface);
-        draw_clear(c_white);
-        draw_point_color(0, 0, c_black);
-        surface_reset_target();
     }
     
     return _system;

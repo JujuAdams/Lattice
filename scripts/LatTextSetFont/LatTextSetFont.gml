@@ -9,6 +9,6 @@ function LatTextSetFont(_fontSprite)
     with(_system)
     {
         __fontSprite       = _fontSprite;
-        __fontCharacterMap = __fontMap[? _fontSprite];
+        __fontCharacterMap = __fontMap[? _fontSprite].__characterMap;
     }
 }

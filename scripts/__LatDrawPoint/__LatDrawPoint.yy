@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"LatSymbolDeleteFont",
+  "%Name":"__LatDrawPoint",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"LatSymbolDeleteFont",
+  "name":"__LatDrawPoint",
   "parent":{
-    "name":"Symbols",
-    "path":"folders/Lattice/Symbols.yy",
+    "name":"(System)",
+    "path":"folders/Lattice/(System).yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

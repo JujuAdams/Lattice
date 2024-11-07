@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"LatPaletteGet",
+  "%Name":"LatLayerExists",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"LatPaletteGet",
+  "name":"LatLayerExists",
   "parent":{
-    "name":"Palette",
-    "path":"folders/Lattice/Palette.yy",
+    "name":"Layer",
+    "path":"folders/Lattice/Layer.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

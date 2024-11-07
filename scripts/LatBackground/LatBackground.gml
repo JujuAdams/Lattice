@@ -1,27 +1,21 @@
 // Feather disable all
 
-/// @param paletteIndex
 /// @param left
 /// @param top
 /// @param width
 /// @param height
+/// @param color
 
-function LatBackground(_paletteIndex, _left, _top, _width, _height)
+function LatBackground(_left, _top, _width, _height, _color)
 {
     static _system = __LatSystem();
     
     with(_system.__layerTarget)
     {
-        surface_set_target(__surfaceSymbol);
-        gpu_set_blendmode_ext(bm_one, bm_zero);
-        gpu_set_colorwriteenable(false, false, false, true);
-        draw_set_alpha(_paletteIndex/255);
+        ds_grid_set_region(__bgColorGrid, _left, _top, _left + _width-1, _top + _height-1, _color);
         
-        __LatDrawRectangle(_left, _top, _left + _width-1, _top + _height-1);
-        
-        gpu_set_blendmode(bm_normal);
-        gpu_set_colorwriteenable(true, true, true, true);
-        draw_set_alpha(1);
+        surface_set_target(__surface);
+        __LatDrawRectangle(_left + __width, _top, _width, _height, _color);
         surface_reset_target();
     }
 }
