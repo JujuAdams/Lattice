@@ -21,5 +21,5 @@ void main()
     vec2 symbolUV = mod(vec2(3.0, 1.0)*v_vTexcoord*u_vLayerSize, 1.0);
     vec4 sample = texture2D(u_sSymbols, symbolCoord + symbolUV*(u_vCellSize / u_vSymbolsDimensions));
     
-    gl_FragColor = mix(background, foreground, sample.a);
+    gl_FragColor = mix(background, vec4(foreground.rgb*sample.rgb, foreground.a), sample.a);
 }

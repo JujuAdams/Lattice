@@ -25,7 +25,7 @@ function __LatClassLayer(_left, _top, _right, _bottom) constructor
     __fgColorGrid = ds_grid_create(__width, __height);
     __surface     = undefined;
     
-    ds_grid_clear(__fgColorGrid, c_white);
+    ds_grid_clear(__fgColorGrid, 0xFF000000 | c_white);
     
     __EnsureSurface = function()
     {
@@ -94,10 +94,10 @@ function __LatClassLayer(_left, _top, _right, _bottom) constructor
         shader_set_uniform_f(_LatShader_u_vSymbolsDimensions, LATTICE_SYMBOL_TEXTURE_WIDTH, LATTICE_SYMBOL_TEXTURE_HEIGHT);
         texture_set_stage(_LatShader_u_sSymbols, _symbolTexture);
         draw_surface_part_ext(__surface,
-                                0,  0, __width, __height,
-                                _x + __left, _y + __top, 
-                                LATTICE_CELL_WIDTH, LATTICE_CELL_HEIGHT,
-                                c_white, 1);
+                              0,  0, __width, __height,
+                              _x + __left, _y + __top, 
+                              LATTICE_CELL_WIDTH, LATTICE_CELL_HEIGHT,
+                              c_white, 1);
         shader_reset();
     }
 }

@@ -26,8 +26,11 @@ function LatSprite(_sprite, _image, _x, _y, _fgColor = c_white, _bgColor = c_bla
             _x -= __left;
             _y -= __top;
             
+            _bgColor |= 0xFF000000;
+            _fgColor |= 0xFF000000;
+            
             var _index = _spriteData.__imageArray[floor(max(0, _image mod sprite_get_number(_sprite)))];
-            var _symbol = make_color_rgb(_index mod 256, _index div 256, 0);
+            var _symbol = 0xFF000000 | make_color_rgb(_index mod 256, _index div 256, 0);
             
             __symbolGrid[#  _x, _y] = _symbol;
             __bgColorGrid[# _x, _y] = _bgColor;

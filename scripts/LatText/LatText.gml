@@ -20,6 +20,9 @@ function LatText(_x, _y, _text, _fgColor = c_white, _bgColor = c_black)
             return;
         }
         
+        _bgColor |= 0xFF000000;
+        _fgColor |= 0xFF000000;
+        
         var _width = __width;
         _x -= __left;
         _y -= __top;
@@ -33,7 +36,7 @@ function LatText(_x, _y, _text, _fgColor = c_white, _bgColor = c_black)
             
             var _character = string_char_at(_text, _i);
             var _index = _characterMap[? _character] ?? 0;
-            var _symbol = make_color_rgb(_index mod 256, _index div 256, 0);
+            var _symbol = 0xFF000000 | make_color_rgb(_index mod 256, _index div 256, 0);
             
             __symbolGrid[#  _x, _y] = _symbol;
             __bgColorGrid[# _x, _y] = _bgColor;
