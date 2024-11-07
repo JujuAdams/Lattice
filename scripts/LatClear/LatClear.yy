@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"LatClear",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"LatClear",
+  "parent":{
+    "name":"Drawing",
+    "path":"folders/Lattice/Drawing.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

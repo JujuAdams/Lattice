@@ -38,6 +38,7 @@
     {"id":{"name":"__LatSystem","path":"scripts/__LatSystem/__LatSystem.yy",},},
     {"id":{"name":"__LatTrace","path":"scripts/__LatTrace/__LatTrace.yy",},},
     {"id":{"name":"LatBackground","path":"scripts/LatBackground/LatBackground.yy",},},
+    {"id":{"name":"LatClear","path":"scripts/LatClear/LatClear.yy",},},
     {"id":{"name":"LatForeground","path":"scripts/LatForeground/LatForeground.yy",},},
     {"id":{"name":"LatLayerCreate","path":"scripts/LatLayerCreate/LatLayerCreate.yy",},},
     {"id":{"name":"LatLayerDestroy","path":"scripts/LatLayerDestroy/LatLayerDestroy.yy",},},
