@@ -45,13 +45,22 @@ else
 
 if (GuiNavUsingDirectional() && GuiNavGetOver())
 {
-    if (GuiNavGetDY() < 0)
+    if (focusable)
     {
-        value = max(value + unit, valueMin);
+        if (GuiNavGetClick()) GuiNavToggleFocus();
+        if (GuiButtonGetPress("escape")) GuiNavSetFocus(false);
     }
-    else if (GuiNavGetDY() > 0)
+    
+    if (((not focusable) && (not GuiNavGetEnter())) || GuiNavGetFocus())
     {
-        value = min(value - unit, valueMax);
+        if (GuiNavGetDY() < 0)
+        {
+            value = max(value + unit, valueMin);
+        }
+        else if (GuiNavGetDY() > 0)
+        {
+            value = min(value - unit, valueMax);
+        }
     }
 }
 else if (GuiNavUsingPointer())

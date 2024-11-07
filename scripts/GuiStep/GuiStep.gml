@@ -68,7 +68,7 @@ function GuiStep()
                 {
                     __mousePressX = __mouseX;
                     __mousePressY = __mouseY;
-                
+                    
                     __mousePrevX = __mouseX;
                     __mousePrevY = __mouseY;
                 }

@@ -90,7 +90,7 @@ with(background)
         x: 32,
         y: 3,
         width: 20,
-        height: 6,
+        height: 8,
     });
     
     var _layout = GuiLayoutStartListV(scrollbox, 0, fa_left, fa_top);
@@ -109,7 +109,7 @@ with(background)
     
     GuiCreate(GuiExampleText, {
         x: 32,
-        y: 10,
+        y: 12,
         text: "RADIO BUTTON",
         fgColor: C_SUPERSTAR,
     });
@@ -119,7 +119,7 @@ with(background)
         group: "Group 1",
         index: 1,
         x: 32,
-        y: 12,
+        y: 14,
     });
     
     GuiCreate(GuiExampleRadioButton, {
@@ -127,7 +127,7 @@ with(background)
         group: "Group 1",
         index: 2,
         x: 32,
-        y: 13,
+        y: 15,
     });
     
     GuiCreate(GuiExampleText, {

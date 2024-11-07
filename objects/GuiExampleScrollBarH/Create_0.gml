@@ -11,13 +11,21 @@
 
 event_inherited();
 
-GuiNavRaycastSetDisable(id, true, false);
+if (not variable_instance_exists(id, "value"    )) value     = 0;
+if (not variable_instance_exists(id, "valueMin" )) valueMin  = 0;
+if (not variable_instance_exists(id, "valueMax" )) valueMax  = 1;
+if (not variable_instance_exists(id, "arrows"   )) arrows    = true;
+if (not variable_instance_exists(id, "func"     )) func      = function() {};
+if (not variable_instance_exists(id, "focusable")) focusable = true;
 
-if (not variable_instance_exists(id, "value"   )) value    = 0;
-if (not variable_instance_exists(id, "valueMin")) valueMin = 0;
-if (not variable_instance_exists(id, "valueMax")) valueMax = 1;
-if (not variable_instance_exists(id, "arrows"  )) arrows   = true;
-if (not variable_instance_exists(id, "func"    )) func     = function() {};
+if (focusable)
+{
+    GuiNavSetFocusable(true);
+}
+else
+{
+    GuiNavRaycastSetDisable(true, false);
+}
 
 // Gui instances will initialize to have a `width` and `height` of 0. If either is zero when this
 // event is executed then we set a reasonable default value by using the size of the text label

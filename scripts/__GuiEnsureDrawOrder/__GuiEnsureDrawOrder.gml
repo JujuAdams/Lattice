@@ -65,7 +65,7 @@ function __GuiEnsureDrawOrderInner(_instance)
         var _i = array_length(_array)-1;
         repeat(array_length(_array))
         {
-            if (__GuiEnsureDrawOrderInner(_array[_i]) == __GUI_RETURN_BLOCK_SIBLINGS) break;
+            __GuiEnsureDrawOrderInner(_array[_i]);
             --_i;
         }
         

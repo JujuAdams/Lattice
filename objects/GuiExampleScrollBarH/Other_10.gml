@@ -47,13 +47,22 @@ var _handlePos = round(lerp(_bodyL, _bodyR, clamp((value - valueMin) / (valueMax
 
 if (GuiNavUsingDirectional() && GuiNavGetOver())
 {
-    if (GuiNavGetDX() < 0)
+    if (focusable)
     {
-        value = max(value - _unit, valueMin);
+        if (GuiNavGetClick()) GuiNavToggleFocus();
+        if (GuiButtonGetPress("escape")) GuiNavSetFocus(false);
     }
-    else if (GuiNavGetDX() > 0)
+    
+    if (((not focusable) && (not GuiNavGetEnter())) || GuiNavGetFocus())
     {
-        value = min(value + _unit, valueMax);
+        if (GuiNavGetDX() < 0)
+        {
+            value = max(value - _unit, valueMin);
+        }
+        else if (GuiNavGetDX() > 0)
+        {
+            value = min(value + _unit, valueMax);
+        }
     }
 }
 else if (GuiNavUsingPointer())

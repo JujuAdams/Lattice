@@ -20,7 +20,7 @@ function __GuiEnsureStepOrder()
         array_foreach(_dirtyOrderArray, __GuiSortChildren);
         array_resize(_dirtyOrderArray, 0);
         
-        __GuiEnsureStepOrderInner(GUI_ROOT);
+        __GuiEnsureStepOrderInner((__navMode == GUI_NAV_DIRECTIONAL)? (array_last(__stepRootStack) ?? GUI_ROOT) : GUI_ROOT);
         
         return __stepOrder;
     }
@@ -37,26 +37,29 @@ function __GuiEnsureStepOrderInner(_instance)
         
         //N.B. We iterate over instances backwards to handle modals and blockers elegantly
         
-        if (__scissorState)
+        if ((not __focusable) || __focused || (_system.__navMode != GUI_NAV_DIRECTIONAL))
         {
-            array_insert(_stepOrder, 0, method(self, __GuiStepMethodScissorPush));
-        }
-        
-        //Add children created inside the parent to the Step order. If we encounter a blocking
-        //instance inside the parent then only prevent adding of instances that are inside the
-        //parent.
-        var _array = __childArray;
-        var _i = array_length(_array)-1;
-        repeat(array_length(_array))
-        {
-            var _return = __GuiEnsureStepOrderInner(_array[_i]);
-            if ((_return == __GUI_RETURN_MODAL) || (_return == __GUI_RETURN_BLOCK_SIBLINGS)) break;
-            --_i;
-        }
-        
-        if (__scissorState)
-        {
-            array_insert(_stepOrder, 0, method(self, __GuiScissorPop));
+            if (__scissorState)
+            {
+                array_insert(_stepOrder, 0, method(self, __GuiStepMethodScissorPush));
+            }
+            
+            //Add children created inside the parent to the Step order. If we encounter a blocking
+            //instance inside the parent then only prevent adding of instances that are inside the
+            //parent.
+            var _array = __childArray;
+            var _i = array_length(_array)-1;
+            repeat(array_length(_array))
+            {
+                var _return = __GuiEnsureStepOrderInner(_array[_i]);
+                if (_return == __GUI_RETURN_MODAL) break;
+                --_i;
+            }
+            
+            if (__scissorState)
+            {
+                array_insert(_stepOrder, 0, method(self, __GuiScissorPop));
+            }
         }
         
         if ((__behavior == GUI_BEHAVIOR_BUTTON) || (__behavior == GUI_BEHAVIOR_LISTENER))

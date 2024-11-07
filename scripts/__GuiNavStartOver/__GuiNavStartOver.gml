@@ -14,8 +14,8 @@ function __GuiNavStartOver(_instance)
         {
             if (__navMode == GUI_NAV_DIRECTIONAL)
             {
-                __directionalLastX = _instance.x;
-                __directionalLastY = _instance.y;
+                __directionalLastX = _instance.x + (_instance.width  div 2);
+                __directionalLastY = _instance.y + (_instance.height div 2);
                 GuiScrollTo(_instance);
             }
             

@@ -5,8 +5,9 @@
 
 event_inherited();
 
-if (not variable_instance_exists(id, "padding")) padding = 0;
+if (not variable_instance_exists(id, "padding"      )) padding = 1;
 if (not variable_instance_exists(id, "showScrollbar")) showScrollbar = true;
+if (not variable_instance_exists(id, "focusable"    )) focusable = true;
 
 if ((width == 0) || (width == 0))
 {
@@ -16,3 +17,9 @@ if ((width == 0) || (width == 0))
 handleGrabbed = false;
 
 GuiScrollSetRegionExt(padding, padding, (showScrollbar? 1 : 0) + padding, padding);
+
+if (focusable)
+{
+    GuiSetBehavior(GUI_BEHAVIOR_BUTTON);
+    GuiNavSetFocusable(true);
+}

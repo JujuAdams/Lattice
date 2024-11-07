@@ -8,6 +8,8 @@ if (instance_exists(__selectOnDestroy))
     GuiNavSelectSoft(__selectOnDestroy);
 }
 
+GuiNavSetFocus(false);
+
 with(__GuiSystem())
 {
     __stepDirty = true;
