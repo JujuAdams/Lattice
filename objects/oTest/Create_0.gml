@@ -3,7 +3,7 @@
 LatSymbolAddSprite(sTest);
 LatSymbolAddFont(sFontASCII, " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~");
 
-latticeLayer = LatLayerCreate(0);
+latticeLayer = LatLayerCreate();
 LatLayerSetTarget(latticeLayer);
 
 LatSprite(sTest, 0, 0, 0);

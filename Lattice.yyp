@@ -41,6 +41,7 @@
     {"id":{"name":"LatForeground","path":"scripts/LatForeground/LatForeground.yy",},},
     {"id":{"name":"LatLayerCreate","path":"scripts/LatLayerCreate/LatLayerCreate.yy",},},
     {"id":{"name":"LatLayerDestroy","path":"scripts/LatLayerDestroy/LatLayerDestroy.yy",},},
+    {"id":{"name":"LatLayerDraw","path":"scripts/LatLayerDraw/LatLayerDraw.yy",},},
     {"id":{"name":"LatLayerExists","path":"scripts/LatLayerExists/LatLayerExists.yy",},},
     {"id":{"name":"LatLayerGetTarget","path":"scripts/LatLayerGetTarget/LatLayerGetTarget.yy",},},
     {"id":{"name":"LatLayerSetTarget","path":"scripts/LatLayerSetTarget/LatLayerSetTarget.yy",},},

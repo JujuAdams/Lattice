@@ -3,8 +3,8 @@
 /// @param x
 /// @param y
 /// @param text
-/// @param [fgColor=1]
-/// @param [bgColor=0]
+/// @param [fgColor=white]
+/// @param [bgColor=black]
 
 function LatText(_x, _y, _text, _fgColor = c_white, _bgColor = c_black)
 {
@@ -15,15 +15,21 @@ function LatText(_x, _y, _text, _fgColor = c_white, _bgColor = c_black)
     
     with(_system.__layerTarget)
     {
+        if ((_x < __left) || (_y < __top) || (_x > __right) || (_y > __bottom))
+        {
+            return;
+        }
+        
+        var _width = __width;
+        _x -= __left;
+        _y -= __top;
+        
         surface_set_target(__EnsureSurface());
         
         var _i = 1;
         repeat(string_length(_text))
         {
-            if ((_x < 0) || (_y < 0) || (_x >= __width) || (_y >= __height))
-            {
-                break;
-            }
+            if (_x >= _width) break;
             
             var _character = string_char_at(_text, _i);
             var _index = _characterMap[? _character] ?? 0;
@@ -33,9 +39,9 @@ function LatText(_x, _y, _text, _fgColor = c_white, _bgColor = c_black)
             __bgColorGrid[# _x, _y] = _bgColor;
             __fgColorGrid[# _x, _y] = _fgColor;
             
-            __LatDrawPoint(_x,             _y, _symbol);
-            __LatDrawPoint(_x +   __width, _y, _bgColor);
-            __LatDrawPoint(_x + 2*__width, _y, _fgColor);
+            __LatDrawPoint(_x,            _y, _symbol);
+            __LatDrawPoint(_x +   _width, _y, _bgColor);
+            __LatDrawPoint(_x + 2*_width, _y, _fgColor);
             
             ++_x;
             ++_i;
