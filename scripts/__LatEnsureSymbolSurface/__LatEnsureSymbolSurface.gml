@@ -29,7 +29,11 @@ function __LatEnsureSymbolSurface()
             repeat(array_length(_imageArray))
             {
                 var _symbolIndex = _imageArray[_j];
-                draw_sprite_ext(_sprite, _j, LATTICE_CELL_WIDTH*_symbolIndex, LATTICE_CELL_HEIGHT*0, 1, 1, 0, c_white, 1);
+                
+                var _x = (_symbolIndex mod LATTICE_SYMBOLS_WIDTH)*LATTICE_CELL_WIDTH;
+                var _y = (_symbolIndex div LATTICE_SYMBOLS_WIDTH)*LATTICE_CELL_HEIGHT;
+                draw_sprite_ext(_sprite, _j, _x, _y, 1, 1, 0, c_white, 1);
+                
                 ++_j;
             }
             
@@ -49,7 +53,11 @@ function __LatEnsureSymbolSurface()
             {
                 var _char = string_char_at(_mapString, _j);
                 var _symbolIndex = _characterMap[? _char];
-                draw_sprite_ext(_sprite, _j-1, LATTICE_CELL_WIDTH*_symbolIndex, LATTICE_CELL_HEIGHT*0, 1, 1, 0, c_white, 1);
+                
+                var _x = (_symbolIndex mod LATTICE_SYMBOLS_WIDTH)*LATTICE_CELL_WIDTH;
+                var _y = (_symbolIndex div LATTICE_SYMBOLS_WIDTH)*LATTICE_CELL_HEIGHT;
+                draw_sprite_ext(_sprite, _j-1, _x, _y, 1, 1, 0, c_white, 1);
+                
                 ++_j;
             }
             

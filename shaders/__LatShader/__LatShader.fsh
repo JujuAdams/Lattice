@@ -11,8 +11,8 @@ uniform sampler2D u_sSymbols;
 void main()
 {
     vec4 symbolRGBA = texture2D(gm_BaseTexture, v_vTexcoord);
-    vec4 foreground = texture2D(gm_BaseTexture, v_vTexcoord + vec2(1.0/3.0, 0.0));
-    vec4 background = texture2D(gm_BaseTexture, v_vTexcoord + vec2(2.0/3.0, 0.0));
+    vec4 background = texture2D(gm_BaseTexture, v_vTexcoord + vec2(1.0/3.0, 0.0));
+    vec4 foreground = texture2D(gm_BaseTexture, v_vTexcoord + vec2(2.0/3.0, 0.0));
     
     float symbol = 255.0*(symbolRGBA.r + 256.0*symbolRGBA.g);
     vec2  symbolCoord = vec2(mod(symbol, u_vSymbolsSize.x), floor(symbol / u_vSymbolsSize.x));
