@@ -22,6 +22,8 @@ function __LatSystem()
         
         __boxDict = {};
         
+        __font = -1;
+        
         __formatCacheDict = {};
     }
     
