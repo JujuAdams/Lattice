@@ -13,7 +13,7 @@ function LatREXLoadFlatten(_path, _symbolSprite, _transparent)
     static _system = __LatSystem();
     static _surface = -1;
     
-    var _buffer = __LatGzipUnzipFile(_path, game_save_id);
+    var _buffer = __LatGzipUnzipFile(_path);
     
     var _version = buffer_read(_buffer, buffer_s32);
     if (_version != -1)
