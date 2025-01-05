@@ -1,7 +1,5 @@
 // Feather disable all
 
-cursorSprite = LatREXLoadFlatten("cursor.xp", sFontFull, false);
-
 lastMouseX = device_mouse_x_to_gui(0);
 lastMouseY = device_mouse_y_to_gui(0);
 
