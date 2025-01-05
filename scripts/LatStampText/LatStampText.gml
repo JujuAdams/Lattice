@@ -6,7 +6,7 @@
 /// @param [fgColor]
 /// @param [bgColor]
 
-function LatText(_x, _y, _text, _fgColor = undefined, _bgColor = undefined)
+function LatStampText(_x, _y, _text, _fgColor = undefined, _bgColor = undefined)
 {
     static _system = __LatSystem();
     
@@ -55,12 +55,12 @@ function LatText(_x, _y, _text, _fgColor = undefined, _bgColor = undefined)
         
         if (_fgColor != undefined)
         {
-            LatForeground(_fgColor, _x, _y, _cellW*string_length(_text), _cellH);
+            LatStampFg(_fgColor, _x, _y, _cellW*string_length(_text), _cellH);
         }
         
         if (_bgColor != undefined)
         {
-            LatBackground(_bgColor, _x, _y, _cellW*string_length(_text), _cellH);
+            LatStampBg(_bgColor, _x, _y, _cellW*string_length(_text), _cellH);
         }
     }
 }

@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"LatText",
+  "%Name":"__LatGzip",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"LatText",
+  "name":"__LatGzip",
   "parent":{
-    "name":"Stamp",
-    "path":"folders/Lattice/Stamp.yy",
+    "name":"(System)",
+    "path":"folders/Lattice/(System).yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"LatREXLoadFlatten",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"LatREXLoadFlatten",
+  "parent":{
+    "name":"REXPaint",
+    "path":"folders/Lattice/REXPaint.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

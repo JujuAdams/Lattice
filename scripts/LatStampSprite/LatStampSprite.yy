@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"LatBackground",
+  "%Name":"LatStampSprite",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"LatBackground",
+  "name":"LatStampSprite",
   "parent":{
-    "name":"Stamp",
-    "path":"folders/Lattice/Stamp.yy",
+    "name":"Layer",
+    "path":"folders/Lattice/Layer.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

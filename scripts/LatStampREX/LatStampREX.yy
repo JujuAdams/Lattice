@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"LatStampREX",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"LatStampREX",
+  "parent":{
+    "name":"REXPaint",
+    "path":"folders/Lattice/REXPaint.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -7,7 +7,7 @@
 /// @param [fgColor]
 /// @param [bgColor]
 
-function LatSprite(_sprite, _image, _x, _y, _foreground = undefined, _background = undefined)
+function LatStampSprite(_sprite, _image, _x, _y, _foreground = undefined, _background = undefined)
 {
     static _system = __LatSystem();
     
@@ -26,7 +26,6 @@ function LatSprite(_sprite, _image, _x, _y, _foreground = undefined, _background
         
         if (not LATTICE_TEXTURE_GROUP_CROPPED)
         {
-            
             gpu_set_blendmode(bm_subtract);
             __LatDrawRectangle(LATTICE_CELL_WIDTH*_x, LATTICE_CELL_HEIGHT*_y, LATTICE_CELL_WIDTH*_cellW, LATTICE_CELL_HEIGHT*_cellH, c_white, 1);
             gpu_set_blendmode(bm_normal);
@@ -40,12 +39,12 @@ function LatSprite(_sprite, _image, _x, _y, _foreground = undefined, _background
         
         if (_foreground != undefined)
         {
-            LatForeground(_foreground, _x, _y, _cellW, _cellH);
+            LatStampFg(_foreground, _x, _y, _cellW, _cellH);
         }
         
         if (_background != undefined)
         {
-            LatBackground(_background, _x, _y, _cellW, _cellH);
+            LatStampBg(_background, _x, _y, _cellW, _cellH);
         }
     }
 }

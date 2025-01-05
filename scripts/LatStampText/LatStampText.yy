@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"LatStampText",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"LatStampText",
+  "parent":{
+    "name":"Layer",
+    "path":"folders/Lattice/Layer.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -8,10 +8,10 @@ latticeLayer = LatLayerCreate(0);
 
 LatLayerSetTarget(latticeLayer);
 
-LatSprite(sTestLarge, 0, 0, 0);
-LatSprite(sTestSmall, 1, 1, 1, c_red);
-LatSprite(sTestSmall, 2, 2, 2, c_black, c_white);
+LatStampSprite(sTestLarge, 0, 0, 0);
+LatStampSprite(sTestSmall, 1, 1, 1, c_red);
+LatStampSprite(sTestSmall, 2, 2, 2, c_black, c_white);
 
-LatText(4, 0, "Hello world!", c_black, c_white);
-LatBackground(c_blue, 4, 0, 4, 1);
-LatForeground(c_blue, 10, 0, 4, 1);
+LatStampText(4, 0, "Hello world!", c_black, c_white);
+LatStampBg(c_blue, 4, 0, 4, 1);
+LatStampFg(c_blue, 10, 0, 4, 1);
